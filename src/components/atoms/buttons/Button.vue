@@ -12,44 +12,74 @@ const props = defineProps({
     type: String,
     default: 'regular',
     validator: (prop) => ['small', 'regular', 'large'].includes(prop)
+  },
+  variant: {
+    type: String,
+    default: 'filled',
+    validator: (prop) => ['filled', 'text'].includes(prop)
   }
 });
 
 const classes = computed(() => ({
-  'btn-pill': true,
-  [`btn-pill--${props.size || 'regular'}`]: true,
-}))
+  'btn': true,
+  [`btn--${props.size}`]: true,
+  [`btn--${props.variant}`]: true,
+}));
 </script>
 
 <style lang="scss" scoped>
-.btn-pill {
+.btn {
   font-family: 'Inter', sans-serif;
   cursor: pointer;
   border: none;
   border-radius: 32px;
-  color: $white-100;
-  background-color: $blue-400;
   display: flex;
   justify-content: center;
   align-items: center;
-
-  &:hover {
-    background-color: darken($blue-400, $hover-darken);
-  }
 
   &:focus {
     outline: solid 2px $blue-300;
     outline-offset: 1px;
   }
 
-  &:active {
-    background-color: $blue-400;
-  }
-
   &:disabled {
-    background-color: $blue-400;
     cursor: default;
     opacity: 0.5;
+  }
+
+  &--filled {
+    color: $white-100;
+    background-color: $blue-400;
+
+    &:hover {
+      background-color: darken($blue-400, $hover-darken);
+    }
+
+    &:active {
+      background-color: $blue-400;
+    }
+
+    &:disabled {
+      background-color: $blue-400;
+    }
+  }
+
+  &--text {
+    color: $blue-400;
+    background-color: transparent;
+
+    &:hover {
+      color: darken($blue-400, $hover-darken);
+    }
+
+    &:active {
+      color: $blue-400;
+      background-color: $white-200;
+    }
+
+    &:disabled {
+      color: $blue-400;
+    }
   }
 
   &--large {
