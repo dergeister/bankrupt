@@ -1,22 +1,25 @@
-<script setup>
-import { ref } from 'vue'
-import { useI18n } from "vue-i18n";
-
-defineProps({
-  msg: String,
-})
-
-const { t } = useI18n();
-
-const mensagem = t('user.name');
-
-const count = ref(0);
-</script>
-
 <template>
-  <h1>Home</h1>
+  <div class="center">
+    <PillButton size="small">
+      teste
+    </PillButton>
+    <PillButton disabled>
+      teste
+    </PillButton>
+    <PillButton size="large">
+      teste
+    </PillButton>
+  </div>
 </template>
 
-<style scoped>
+<script setup>
+import PillButton from '../atoms/buttons/PillButton.vue';
+</script>
 
+<style scoped>
+.center {
+  padding: 2rem;
+  display: grid;
+  place-items: center;
+}
 </style>
