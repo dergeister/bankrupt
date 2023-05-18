@@ -1,5 +1,5 @@
 <template>
-  <button :class="['btn-pill', `btn-pill--${props.size}`]">
+  <button :class="classes">
     <slot></slot>
   </button>
 </template>
@@ -14,6 +14,11 @@ const props = defineProps({
     validator: (prop) => ['small', 'regular', 'large'].includes(prop)
   }
 });
+
+const classes = computed(() => ({
+  'btn-pill': true,
+  [`btn-pill--${props.size || 'regular'}`]: true,
+}))
 </script>
 
 <style lang="scss" scoped>
