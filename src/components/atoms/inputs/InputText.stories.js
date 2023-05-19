@@ -15,8 +15,10 @@ export default {
 }
 
 export const Default = {
-  render: () => ({
-    components: { InputText },
-    template: '<InputText placeholder="type any text" />',
-  }),
+  args: {
+    variant: 'transparent',
+    placeholder: 'type anything!',
+    invalid: false,
+    disabled: false,
+  },
 }

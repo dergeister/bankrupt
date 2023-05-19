@@ -1,13 +1,20 @@
 <template>
-  <button :class="classes">
-    <slot></slot>
-  </button>
+<button
+  :class="classes"
+  :disabled="disabled"
+>
+  <span>{{ label }}</span>
+</button>
 </template>
 
 <script setup>
 import { computed } from 'vue';
 
 const props = defineProps({
+  label: {
+    type: String,
+    default: 'Button'
+  },
   size: {
     type: String,
     default: 'regular',
@@ -17,6 +24,10 @@ const props = defineProps({
     type: String,
     default: 'filled',
     validator: (prop) => ['filled', 'text'].includes(prop)
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
   }
 });
 
@@ -43,7 +54,7 @@ const classes = computed(() => ({
   }
 
   &:disabled {
-    cursor: default;
+    cursor: not-allowed;
     opacity: 0.5;
   }
 

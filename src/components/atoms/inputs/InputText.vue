@@ -3,6 +3,8 @@
   type="text"
   :class="classes"
   :value="modelValue"
+  :disabled="disabled"
+  :placeholder="placeholder"
   @input="emit('update:modelValue', $event.target.value)"
 />
 </template>
@@ -19,6 +21,17 @@ const props = defineProps({
     default: 'transparent',
     validator: (prop) => ['transparent', 'filled'].includes(prop)
   },
+  placeholder: {
+    type: String,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  invalid: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const emit = defineEmits(['update:modelValue']);
@@ -26,6 +39,7 @@ const emit = defineEmits(['update:modelValue']);
 const classes = computed(() => ({
   'ipt': true,
   [`ipt--${props.variant}`]: true,
+  'ipt--invalid': props.invalid
 }));
 </script>
 
@@ -52,11 +66,23 @@ const classes = computed(() => ({
   &--filled {
     padding: 0.5rem 1rem;
     border-radius: 32px;
+    border: solid 1px $white-200;
     background-color: $white-200;
 
     &:focus {
       background-color: $white-300;
+      border: solid 1px $white-300;
     }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  
+  &--invalid,
+  &--invalid:focus {
+    border-color: $red-600;
   }
 }
 </style>

@@ -21,34 +21,10 @@ export default {
 }
 
 export const Default = {
-  render: () => ({
-    components: { Button },
-    template: '<Button>Button</Button>',
-  }),
-}
-
-export const Filled = {
-  render: () => ({
-    components: { Button },
-    template: `
-      <Button size="small">Button</Button>
-      <br>
-      <Button>Button</Button>
-      <br>
-      <Button size="large">Button</Button>
-    `,
-  }),
-}
-
-export const Text = {
-  render: () => ({
-    components: { Button },
-    template: `
-      <Button size="small" variant="text">Button</Button>
-      <br>
-      <Button variant="text">Button</Button>
-      <br>
-      <Button size="large" variant="text">Button</Button>
-    `,
-  }),
+  args: {
+    size: 'regular',
+    variant: 'filled',
+    label: 'Button',
+    disabled: false,
+  },
 }
