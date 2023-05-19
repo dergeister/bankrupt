@@ -1,19 +1,16 @@
 <template>
   <div class="center">
-    <PillButton size="small">
-      teste
-    </PillButton>
-    <PillButton disabled>
-      teste
-    </PillButton>
-    <PillButton size="large">
-      teste
-    </PillButton>
+    {{ valor }}
+    <InputText v-model="valor" :placeholder="'asdfg'" />
   </div>
 </template>
 
 <script setup>
-import PillButton from '../atoms/buttons/PillButton.vue';
+import { ref } from 'vue';
+
+import InputText from '../atoms/inputs/InputText.vue';
+
+const valor = ref('test');
 </script>
 
 <style scoped>
