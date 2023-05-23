@@ -5,18 +5,18 @@ export default {
   component: InputText,
   tags: ['autodocs'],
   argTypes: {
-    variant: {
+    size: {
       control: {
         type: 'select',
       },
-      options: ['transparent', 'filled'],
+      options: ['small', 'regular', 'large'],
     },
   },
 }
 
 export const Default = {
   args: {
-    variant: 'transparent',
+    size: 'regular',
     placeholder: 'type anything!',
     invalid: false,
     disabled: false,
