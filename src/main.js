@@ -4,7 +4,6 @@ import router from './router';
 import i18n from "./i18n/index.js";
 import { createPinia } from "pinia";
 
-import 'primeicons/primeicons.css';
 import './assets/styles/style.scss';
 
 const app = createApp(App);

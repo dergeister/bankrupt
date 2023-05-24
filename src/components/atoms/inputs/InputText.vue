@@ -1,12 +1,15 @@
 <template>
-<input
-  type="text"
-  :class="classes"
-  :value="modelValue"
-  :disabled="disabled"
-  :placeholder="placeholder"
-  @input="emit('update:modelValue', $event.target.value)"
-/>
+<div class="input-text__wrapper">
+  <input
+    :type="type"
+    :class="classes"
+    :value="modelValue"
+    :disabled="disabled"
+    :placeholder="label"
+    @input="emit('update:modelValue', $event.target.value)"
+  />
+  <label :for="id" class="input-text__label">{{ label }}</label>
+</div>
 </template>
 
 <script setup>
@@ -16,14 +19,13 @@ const props = defineProps({
   modelValue: {
     type: String,
   },
-  size: {
+  type: {
     type: String,
-    default: 'regular',
-    validator: (prop) => ['small', 'regular', 'large'].includes(prop)
+    defaut: 'text'
   },
-  placeholder: {
+  label: {
     type: String,
-    default: 'Placeholder'
+    default: 'Label'
   },
   disabled: {
     type: Boolean,
@@ -39,49 +41,77 @@ const emit = defineEmits(['update:modelValue']);
 
 const classes = computed(() => ({
   'ipt-text': true,
-  [`ipt-text--${props.size}`]: true,
   'ipt-text--invalid': props.invalid
 }));
 </script>
 
 <style lang="scss" scoped>
-.ipt-text {
-  font-family: 'Inter', sans-serif;
-  color: $black-800;
-  border: none;
-  border-radius: 32px;
-  border: solid 1px $white-200;
-  background-color: $white-200;
-
-  &:focus {
-    outline: none;
-    background-color: $white-300;
-    border: solid 1px $white-300;
-  }
-
-  &:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
-  
-  &--invalid,
-  &--invalid:focus {
-    box-shadow: 0 0 5px $red-600;
-  }
-
-  &--large {
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-  }
-
-  &--regular {
-    padding: 0.5rem 1rem;
+.input-text__wrapper {
+  position: relative;
+  .ipt-text {
+    font-family: 'Inter', sans-serif;
+    color: $black-800;
+    border: none;
+    border-bottom: solid 1px $gray-400;
+    background-color: transparent;
+    padding: 0.5rem;
     font-size: 0.875rem;
-  }
+    transition: all 0.25s ease;
+    
+    &:focus {
+      outline: none;
+      border-color: $gray-600;
+    }
 
-  &--small {
-    padding: 0.375rem 1rem;
-    font-size: 0.75rem;
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+
+      ~ .input-text__label {
+        opacity: 0.5;
+      }
+    }
+    
+    &--invalid,
+    &--invalid:focus {
+      border-color: $red-600;
+
+      ~ .input-text__label {
+        color: $red-600 !important;
+      }
+    }
+
+    &::placeholder {
+      color: transparent;
+    }
+
+    ~ .input-text__label {
+      position: absolute;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.25s ease;
+      color: $gray-600;
+      left: 0;
+      top: -0.75rem;
+      font-weight: 700;
+      font-size: 0.75rem;
+      pointer-events: none;
+    }
+    
+    &:placeholder-shown ~ .input-text__label {
+      left: 0.5rem;
+      top: 0.5rem;
+      font-size: 0.875rem;
+      color: $gray-600;
+      font-weight: 400;
+    }
+
+    &:focus ~ .input-text__label {
+      color: $black-800;
+      left: 0;
+      top: -0.75rem;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
   }
 }
 </style>

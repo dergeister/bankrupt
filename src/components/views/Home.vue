@@ -2,6 +2,7 @@
   <div class="center">
     {{ valor }}
     <InputText v-model="valor" :placeholder="'asdfg'" />
+    <CircleButton />
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 import { ref } from 'vue';
 
 import InputText from '../atoms/inputs/InputText.vue';
+import CircleButton from '../atoms/buttons/CircleButton.vue';
 
 const valor = ref('test');
 </script>
