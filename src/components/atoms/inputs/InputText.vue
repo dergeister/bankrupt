@@ -48,6 +48,8 @@ const classes = computed(() => ({
 <style lang="scss" scoped>
 .input-text__wrapper {
   position: relative;
+  display: flex;
+
   .ipt-text {
     font-family: 'Inter', sans-serif;
     color: $black-800;
@@ -57,7 +59,8 @@ const classes = computed(() => ({
     padding: 0.5rem;
     font-size: 0.875rem;
     transition: all 0.25s ease;
-    
+    flex: 1;
+
     &:focus {
       outline: none;
       border-color: $gray-600;
@@ -92,7 +95,6 @@ const classes = computed(() => ({
       color: $gray-600;
       left: 0;
       top: -0.75rem;
-      font-weight: 700;
       font-size: 0.75rem;
       pointer-events: none;
     }
@@ -102,14 +104,12 @@ const classes = computed(() => ({
       top: 0.5rem;
       font-size: 0.875rem;
       color: $gray-600;
-      font-weight: 400;
     }
 
     &:focus ~ .input-text__label {
       color: $black-800;
       left: 0;
       top: -0.75rem;
-      font-weight: 700;
       font-size: 0.75rem;
     }
   }

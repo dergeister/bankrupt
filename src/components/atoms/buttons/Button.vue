@@ -25,6 +25,10 @@ const props = defineProps({
     default: 'filled',
     validator: (prop) => ['filled', 'text'].includes(prop)
   },
+  fullWidth: {
+    type: Boolean,
+    default: false,
+  },
   disabled: {
     type: Boolean,
     default: false,
@@ -35,6 +39,7 @@ const classes = computed(() => ({
   'btn': true,
   [`btn--${props.size}`]: true,
   [`btn--${props.variant}`]: true,
+  'btn--full-width': props.fullWidth,
 }));
 </script>
 
@@ -106,6 +111,10 @@ const classes = computed(() => ({
   &--small {
     padding: 0.375rem 1rem;
     font-size: 0.75rem;
+  }
+
+  &--full-width {
+    width: 100%;
   }
 }
 </style>
