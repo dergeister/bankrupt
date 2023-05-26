@@ -8,7 +8,7 @@
     :placeholder="label"
     @input="emit('update:modelValue', $event.target.value)"
   />
-  <label :for="id" class="input-text__label">{{ label }}</label>
+  <label class="input-text__label">{{ label }}</label>
 </div>
 </template>
 

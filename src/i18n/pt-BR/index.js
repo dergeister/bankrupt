@@ -2,7 +2,7 @@ export default {
   data: {
     email: 'E-mail',
     password: 'Senha',
-    passwordStrength: 'A senha deve conter no mínimo 8 caracteres'
+    passwordStrength: 'A senha deve conter ao mínimo 8 caracteres'
   },
   button: {
     login: 'Entrar',

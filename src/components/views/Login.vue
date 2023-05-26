@@ -3,7 +3,7 @@
   <div class="login__logo-area">
     <img
       src="../../assets/logos/logo-white.png"
-      alt="bankrupt-logo"
+      alt="logo"
       class="login__logo-area__logo"
     >
   </div>
@@ -15,6 +15,17 @@
 
 <script setup>
 import LoginForm from '../organisms/forms/LoginForm.vue';
+import useEmitter from '../../composables/useEmitter';
+import { useRouter } from 'vue-router';
+
+const emitter = useEmitter();
+const router = useRouter();
+
+emitter.on('login', () => {
+  router.push({
+    name: 'balance',
+  });
+});
 </script>
 
 <style lang="scss" scoped>
@@ -31,7 +42,6 @@ import LoginForm from '../organisms/forms/LoginForm.vue';
 
     &__logo {
       width: 500px;
-      height: 116px;
     }
   }
 
@@ -39,6 +49,20 @@ import LoginForm from '../organisms/forms/LoginForm.vue';
     display: grid;
     place-items: center;
     padding: 2rem;
+  }
+
+  @media (max-width: $media-breakpoint)  {
+    grid-template-columns: 1fr;
+
+    &__logo-area {
+      display: none;
+    }
+
+    &__form-area {
+      padding: 0;
+      width: 100%;
+      background-color: $blue-400;
+    }
   }
 }
 </style>
