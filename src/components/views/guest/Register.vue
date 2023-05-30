@@ -1,11 +1,11 @@
 <template>
 <div class="create-account">
-  <LoginForm />
+  <RegisterForm />
 </div>
 </template>
 
 <script setup>
-import LoginForm from '../../organisms/forms/LoginForm.vue';
+import RegisterForm from '../../organisms/forms/RegisterForm.vue';
 import useEmitter from '../../../composables/useEmitter';
 import { useRouter } from 'vue-router';
 import { useAuthenticationStore } from '../../../stores/authentication';
