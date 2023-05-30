@@ -1,8 +1,8 @@
 <template>
-<div class="login form">
+<div class="login">
   <div class="login__logo-area">
     <img
-      src="../../assets/logos/logo-white.png"
+      src="../../../assets/logos/logo-white.png"
       alt="logo"
       class="login__logo-area__logo"
     >
@@ -14,16 +14,34 @@
 </template>
 
 <script setup>
-import LoginForm from '../organisms/forms/LoginForm.vue';
-import useEmitter from '../../composables/useEmitter';
+import LoginForm from '../../organisms/forms/LoginForm.vue';
+import useEmitter from '../../../composables/useEmitter';
 import { useRouter } from 'vue-router';
+import { useAuthenticationStore } from '../../../stores/authentication';
 
-const emitter = useEmitter();
 const router = useRouter();
+const emitter = useEmitter();
+const authStore = useAuthenticationStore();
 
-emitter.on('login', () => {
+const { login } = authStore;
+
+emitter.on('login-attempt', (account) => {
+  login(account);
+});
+
+emitter.on('login-success', () => {
   router.push({
     name: 'balance',
+  });
+});
+
+emitter.on('login-error', (response) => {
+  console.log(response);
+});
+
+emitter.on('account-register', () => {
+  router.push({
+    name: 'register',
   });
 });
 </script>

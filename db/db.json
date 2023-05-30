@@ -1,0 +1,14 @@
+{
+  "account": [{
+    "id": "1",
+    "name": "Admin",
+    "email": "admin@bankrupt.com",
+    "password": "admin123"
+  }],
+  "balance": [
+    {
+      "account_id": "1",
+      "amount": "315000"
+    }
+  ]
+}

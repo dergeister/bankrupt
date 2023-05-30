@@ -31,6 +31,7 @@
   </div>
   <div class="login-form__buttons">
     <Button 
+      type="submit"
       :label="t('button.login')" 
       :full-width="true"
       :disabled="isLoading"
@@ -63,18 +64,17 @@ import InputText from '../../atoms/inputs/InputText.vue';
 import Button from '../../atoms/buttons/Button.vue';
 import ValidationMessage from '../../atoms/text/ValidationMessage.vue';
 
-import { useAuthenticationStore } from '../../../stores/authentication';
 import useEmitter from '../../../composables/useEmitter';
+import { useAuthenticationStore } from '../../../stores/authentication';
 
 import '../../../assets/styles/form.scss';
 
-const emitter = useEmitter();
 const { t } = useI18n();
+const emitter = useEmitter();
 const authStore = useAuthenticationStore();
 
 const submitted = ref(false);
 const { isLoading } = storeToRefs(authStore);
-const { login } = authStore;
 
 const form = reactive({
   email: '',
@@ -101,9 +101,7 @@ const submit = async () => {
     return;
   }
 
-  await login({...form});
-
-  emitter.emit('login');
+  emitter.emit('login-attempt', {...form});
 }
 </script>
 

@@ -1,5 +1,6 @@
 <template>
 <button
+  :type="type"
   :class="classes"
   :disabled="disabled"
 >
@@ -32,6 +33,10 @@ const props = defineProps({
   disabled: {
     type: Boolean,
     default: false,
+  },
+  type: {
+    type: String,
+    default: 'button'
   }
 });
 
