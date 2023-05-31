@@ -1,13 +1,16 @@
 <template>
 <form
-  class="login-form"
-  @submit.prevent="submit"
+  class="login-form form"
+  @submit.prevent="handleSubmit"
 >
   <img
     src="../../../assets/logos/logo.png"
     alt="logo"
-    class="login-form__logo"
+    class="form__logo"
   >
+  <div class="form__title">
+    {{t('content.loginFormTitle')}}
+  </div>
   <div class="login-form__email">
     <InputText
       :label="t('data.email')"
@@ -29,17 +32,11 @@
       :show="submitted && v$.password.$invalid"
     />
   </div>
-  <div class="login-form__buttons">
+  <div class="form__buttons">
     <Button 
       type="submit"
       :label="t('button.login')" 
       :full-width="true"
-      :disabled="isLoading"
-    />
-    <Button
-      :label="t('button.forgotPassword')" 
-      :full-width="true" 
-      variant="text"
       :disabled="isLoading"
     />
     <hr>
@@ -48,6 +45,7 @@
       :full-width="true"
       variant="text"
       :disabled="isLoading"
+      @click="handleRegister"
     />
   </div>
 </form>
@@ -94,7 +92,7 @@ const rules = {
 
 const v$ = useVuelidate(rules, form);
 
-const submit = async () => {
+const handleSubmit = async () => {
   submitted.value = true;
 
   if (v$.value.$invalid) {
@@ -103,6 +101,10 @@ const submit = async () => {
 
   emitter.emit('login-attempt', {...form});
 }
+
+const handleRegister = () => {
+  emitter.emit('register');
+}
 </script>
 
 <style lang="scss" scoped>
@@ -110,33 +112,16 @@ const submit = async () => {
   padding: 3rem 2rem 2rem 2rem;
   border-radius: 16px;
   box-shadow: 0 0 10px $gray-400;
-  width: 350px;
   background-color: $white-100;
-
-  &__logo {
-    display: none;
-    width: 100%;
-    margin-bottom: 2rem;
-  }
+  max-width: 350px;
+  width: 100%;
 
   &__email {
     margin-bottom: 2rem;
   }
 
-  &__buttons {
-    margin-top: 3rem;
-
-    .btn + .btn {
-      margin-top: 1rem;
-    }
-  }
-
   @media (max-width: $media-breakpoint)  {
-    width: 300px;
-
-    &__logo {
-      display: block;
-    }
+    width: 90%;
   }
 }
 </style>

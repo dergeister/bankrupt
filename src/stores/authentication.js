@@ -2,7 +2,6 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 import api from "../utils/api";
 import useEmitter from "../composables/useEmitter"
-
 import wait from "../utils/wait-promise";
 
 export const useAuthenticationStore = defineStore("authentication", () => {
@@ -19,12 +18,17 @@ export const useAuthenticationStore = defineStore("authentication", () => {
 
     api.get(`/login/${account.email}/${account.password}`)
     .then((response) => {
-      currentAccount.value = response;
-      emitter.emit('login-success');
+      if(response.data.length > 0) {
+        currentAccount.value = response;
+        emitter.emit('login-success');
+      } else {
+        currentAccount.value = null;
+        emitter.emit('login-error');
+      }
     })
     .catch((error) => {
       currentAccount.value = null;
-      emitter.emit('login-error', error.response);
+      emitter.emit('login-error');
     })
     .finally(() => {
       isLoading.value = false;

@@ -1,22 +1,17 @@
 <template>
-<div class="login">
-  <div class="login__logo-area">
-    <img
-      src="../../../assets/logos/logo-white.png"
-      alt="logo"
-      class="login__logo-area__logo"
-    >
-  </div>
-  <div class="login__form-area">
+  <GuestLayout>
     <LoginForm />
-  </div>
-</div>
+  </GuestLayout>
 </template>
 
 <script setup>
-import LoginForm from '../../organisms/forms/LoginForm.vue';
-import useEmitter from '../../../composables/useEmitter';
+import { onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
+
+import GuestLayout from '../../templates/GuestLayout.vue';
+import LoginForm from '../../organisms/forms/LoginForm.vue';
+
+import useEmitter from '../../../composables/useEmitter';
 import { useAuthenticationStore } from '../../../stores/authentication';
 
 const router = useRouter();
@@ -25,24 +20,33 @@ const authStore = useAuthenticationStore();
 
 const { login } = authStore;
 
-emitter.on('login-attempt', (account) => {
-  login(account);
-});
+onMounted(() => {
+  emitter.on('login-attempt', (account) => {
+    login(account);
+  });
 
-emitter.on('login-success', () => {
-  router.push({
-    name: 'balance',
+  emitter.on('login-success', () => {
+    router.push({
+      name: 'balance',
+    });
+  });
+
+  emitter.on('login-error', () => {
+    console.log('login-error');
+  });
+
+  emitter.on('register', () => {
+    router.push({
+      name: 'register',
+    });
   });
 });
 
-emitter.on('login-error', (response) => {
-  console.log(response);
-});
-
-emitter.on('account-register', () => {
-  router.push({
-    name: 'register',
-  });
+onUnmounted(() => {
+  emitter.off('login-attempt');
+  emitter.off('login-success');
+  emitter.off('login-error');
+  emitter.off('register');
 });
 </script>
 

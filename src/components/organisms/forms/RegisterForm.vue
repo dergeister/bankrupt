@@ -1,13 +1,16 @@
 <template>
 <form
-  class="register-form"
-  @submit.prevent="submit"
+  class="register-form form"
+  @submit.prevent="handleSubmit"
 >
   <img
     src="../../../assets/logos/logo.png"
     alt="logo"
-    class="register-form__logo"
+    class="form__logo"
   >
+  <div class="form__title">
+    {{t('content.registerFormTitle')}}
+  </div>
   <div class="register-form__fields">
     <div class="register-form__fields__name">
       <InputText
@@ -17,17 +20,6 @@
       <ValidationMessage
         :label="t('error.name')"
         :show="submitted && v$.name.$invalid"
-      />
-    </div>
-    <div class="register-form__fields__cpf">
-      <InputText
-        :label="t('data.cpf')"
-        type="text"
-        v-model="v$.cpf.$model"
-      />
-      <ValidationMessage
-        :label="t('error.cpf')"
-        :show="submitted && v$.cpf.$invalid"
       />
     </div>
     <div class="register-form__fields__email">
@@ -41,23 +33,15 @@
         :show="submitted && v$.email.$invalid"
       />
     </div>
-    <div class="register-form__fields__phone">
-      <InputText
-        :label="t('data.phone')"
-        type="text"
-        v-model="v$.phone.$model"
-      />
-      <ValidationMessage
-        :label="t('error.phone')"
-        :show="submitted && v$.phone.$invalid"
-      />
-    </div>
     <div class="register-form__fields__password">
       <InputText
         :label="t('data.password')"
         type="password"
         v-model="v$.password.$model"
       />
+      <small class="form__helper-text">
+        {{ t('content.passwordStrength') }}
+      </small>
       <ValidationMessage
         :label="t('error.password')"
         :show="submitted && v$.password.$invalid"
@@ -75,12 +59,20 @@
       />
     </div>
   </div>
-  <div class="register-form__buttons">
+  <div class="form__buttons">
     <Button 
       type="submit"
       :label="t('button.register')" 
       :full-width="true"
       :disabled="isLoading"
+    />
+    <hr>
+    <Button 
+      :label="t('button.return')" 
+      :full-width="true"
+      variant="text"
+      :disabled="isLoading"
+      @click="handleReturn"
     />
   </div>
 </form>
@@ -98,22 +90,20 @@ import Button from '../../atoms/buttons/Button.vue';
 import ValidationMessage from '../../atoms/text/ValidationMessage.vue';
 
 import useEmitter from '../../../composables/useEmitter';
-import { useAuthenticationStore } from '../../../stores/authentication';
+import { useAccountStore } from '../../../stores/account';
 
 import '../../../assets/styles/form.scss';
 
 const { t } = useI18n();
 const emitter = useEmitter();
-const authStore = useAuthenticationStore();
+const accountStore = useAccountStore();
 
 const submitted = ref(false);
-const { isLoading } = storeToRefs(authStore);
+const { isLoading } = storeToRefs(accountStore);
 
 const form = reactive({
   name: '',
-  cpf: '',
   email: '',
-  phone: '',
   password: '',
   repeatPassword: '',
 });
@@ -122,66 +112,61 @@ const rules = {
   name: {
     required
   },
-  cpf: {
-    required
-  },
   email: {
     email,
     required
   },
-  phone: {
-    required
-  },
   password: {
+    required,
     minLength: minLength(8),
-    required
   },
   repeatPassword: {
-    required
+    required,
+    minLength: minLength(8),
+    equal: (value) => {
+      return value == form.password
+    }
   },
 };
 
 const v$ = useVuelidate(rules, form);
 
-const submit = async () => {
+const handleSubmit = async () => {
   submitted.value = true;
 
   if (v$.value.$invalid) {
     return;
   }
 
-  emitter.emit('register-attempt', {...form});
+  emitter.emit('register-attempt', {
+    name: form.name,
+    email: form.email,
+    password: form.password
+  });
+}
+
+const handleReturn = () => {
+  emitter.emit('login');
 }
 </script>
 
 <style lang="scss" scoped>
 .register-form {
-  padding: 3rem;
+  padding: 3rem 2rem 2rem 2rem;
   border-radius: 16px;
   box-shadow: 0 0 10px $gray-400;
   background-color: $white-100;
-  text-align: center;
-
-  &__logo {
-    width: 300px;
-    margin-bottom: 2rem;
-  }
+  max-width: 350px;
+  width: 100%;
 
   &__fields {
-    // display: grid;
-    // grid-template-columns: 1fr 1fr;
-
-    > div {
-      padding: 1rem;
+    div + div {
+      margin-top: 1rem;
     }
   }
-
-  &__buttons {
-    margin-top: 3rem;
-  }
-
+  
   @media (max-width: $media-breakpoint)  {
-    width: 300px;
+    width: 90%;
   }
 }
 </style>

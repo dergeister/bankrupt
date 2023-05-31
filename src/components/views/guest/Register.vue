@@ -1,29 +1,43 @@
 <template>
-<div class="create-account">
-  <RegisterForm />
-</div>
+  <GuestLayout>
+    <RegisterForm />
+  </GuestLayout>
 </template>
 
 <script setup>
-import RegisterForm from '../../organisms/forms/RegisterForm.vue';
-import useEmitter from '../../../composables/useEmitter';
+import { onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { useAuthenticationStore } from '../../../stores/authentication';
+
+import GuestLayout from '../../templates/GuestLayout.vue';
+import RegisterForm from '../../organisms/forms/RegisterForm.vue';
+
+import useEmitter from '../../../composables/useEmitter';
+import { useAccountStore } from '../../../stores/account';
 
 const router = useRouter();
 const emitter = useEmitter();
-const authStore = useAuthenticationStore();
+const accountStore = useAccountStore();
 
-const { login } = authStore;
+const { register } = accountStore;
 
+onMounted(() => {
+  emitter.on('register-attempt', (account) => {
+    register(account);
+  });
+  
+  emitter.on('login', () => {
+    router.push({
+      name: 'login',
+    });
+  });
+});
 
+onUnmounted(() => {
+  emitter.off('register-attempt');
+  emitter.off('login');
+});
 </script>
 
 <style lang="scss" scoped>
-.create-account {
-  display: grid;
-  place-items: center;
-  background-color: $blue-400;
-  min-height: 100vh;
-}
+
 </style>
