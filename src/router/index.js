@@ -7,4 +7,16 @@ const router = createRouter({
   routes: routes
 });
 
+router.beforeEach((to, from) => {
+  const currentAccount = localStorage.account;
+
+  if(to.meta.requiresAuth && !currentAccount) {
+    return { name: 'login' }
+  } else {
+    if(to.name == 'login' && currentAccount) {
+      return { name: 'balance' }
+    }
+  }
+})
+
 export default router;

@@ -1,9 +1,76 @@
 <template>
-<h1>Balance</h1>
+<UserLayout>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+  <h1>Balance</h1>
+</UserLayout>
 </template>
 
 <script setup>
-
+import UserLayout from '../../templates/UserLayout.vue';
 </script>
 
 <style lang="scss" scoped>

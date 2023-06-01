@@ -34,8 +34,6 @@ const props = defineProps({
       'calendar',
       'chevron-left',
       'cog',
-      'credit-card',
-      'dollar',
       'eye',
       'eye-slash',
       'globe',
@@ -44,7 +42,6 @@ const props = defineProps({
       'search',
       'shield',
       'sliders-h',
-      'sort-alt',
       'times',
       'user',
       'user-edit'

@@ -39,9 +39,7 @@
         type="password"
         v-model="v$.password.$model"
       />
-      <small class="form__helper-text">
-        {{ t('content.passwordStrength') }}
-      </small>
+      <HelperMessage :label="t('content.passwordStrength')"/>
       <ValidationMessage
         :label="t('error.password')"
         :show="submitted && v$.password.$invalid"
@@ -88,6 +86,7 @@ import { storeToRefs } from 'pinia'
 import InputText from '../../atoms/inputs/InputText.vue';
 import Button from '../../atoms/buttons/Button.vue';
 import ValidationMessage from '../../atoms/text/ValidationMessage.vue';
+import HelperMessage from '../../atoms/text/HelperMessage.vue';
 
 import useEmitter from '../../../composables/useEmitter';
 import { useAccountStore } from '../../../stores/account';

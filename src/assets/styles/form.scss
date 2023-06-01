@@ -20,11 +20,6 @@
     }
   }
 
-  &__helper-text {
-    font-size: 0.75rem;
-    color: $gray-400;
-  }
-
   @media (max-width: $media-breakpoint)  {
     &__title {
       font-size: 1.25rem;

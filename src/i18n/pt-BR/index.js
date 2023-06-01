@@ -9,7 +9,7 @@ export default {
     login: 'Entrar',
     createNewAccount: 'Criar nova conta',
     register: 'Criar Conta',
-    return: 'Voltar'
+    return: 'Voltar',
   },
   error: {
     name: 'Nome inválido',
@@ -21,5 +21,10 @@ export default {
     passwordStrength: 'A senha deve conter no mínimo 8 caracteres',
     loginFormTitle: 'Entre ou Cadastre-se',
     registerFormTitle: 'Crie sua conta',
+  },
+  navigation: {
+    balance: 'Saldo',
+    creditCard: 'Cartão de Crédito',
+    transactions: 'Transações'
   }
 }

@@ -12,7 +12,8 @@ const routes = [
   {
     path: '/balance',
     name: 'balance',
-    component: () => import('../components/views/user/Balance.vue')
+    component: () => import('../components/views/user/Balance.vue'),
+    meta: { requiresAuth: true }
   }
 ];
 

@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import api from "../utils/api";
 import useEmitter from "../composables/useEmitter"
@@ -9,7 +9,9 @@ export const useAuthenticationStore = defineStore("authentication", () => {
 
   const isLoading = ref(false);
 
-  const currentAccount = ref(null);
+  const currentAccount = computed(() => {
+
+  })
 
   const login = async (account) => {
     isLoading.value = true;
@@ -18,16 +20,16 @@ export const useAuthenticationStore = defineStore("authentication", () => {
 
     api.get(`/login/${account.email}/${account.password}`)
     .then((response) => {
-      if(response.data.length > 0) {
-        currentAccount.value = response;
+      if(response.data.length > 0) {;
+        setCurrentAccount(response.data[0].id);
         emitter.emit('login-success');
       } else {
-        currentAccount.value = null;
+        setCurrentAccount(null);
         emitter.emit('login-error');
       }
     })
     .catch((error) => {
-      currentAccount.value = null;
+      setCurrentAccount(null);
       emitter.emit('login-error');
     })
     .finally(() => {
@@ -37,7 +39,11 @@ export const useAuthenticationStore = defineStore("authentication", () => {
 
   const logout = async () => {
     await wait();
-    currentAccount.value = null;
+    setCurrentAccount(null);
+  }
+
+  const setCurrentAccount = (account) => {
+    localStorage.account = account;
   }
 
   return {

@@ -1,15 +1,15 @@
 <template>
-<div class="guest">
-  <div class="guest__logo-area">
+<div class="guest-layout">
+  <aside class="guest-layout__logo-area">
     <img
       src="../../assets/logos/logo-white.png"
       alt="logo"
-      class="guest__logo-area__logo"
+      class="guest-layout__logo-area__logo"
     >
-  </div>
-  <div class="guest__content">
+  </aside>
+  <main class="guest-layout__content">
     <slot></slot>
-  </div>
+  </main>
 </div>
 </template>
 
@@ -18,7 +18,7 @@
 </script>
 
 <style lang="scss" scoped>
-.guest {
+.guest-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
