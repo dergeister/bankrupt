@@ -28,7 +28,8 @@ const props = defineProps({
     validator: (prop) => [
       'dollar',
       'credit-card',
-      'sort-alt',
+      'chart-line',
+      'money-bill',
     ].includes(prop)
   },
   to: {
@@ -96,6 +97,7 @@ const handleNavigation = () => {
 
   &--active {
     font-weight: 600;
+    color: $black-800;
   }
 
   @media (max-width: $media-breakpoint)  {

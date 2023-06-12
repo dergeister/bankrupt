@@ -18,7 +18,7 @@ const props = defineProps({
 
 const classes = computed(() => ({
   'validation-message': true,
-  [`validation-message--active`]: props.show,
+  'validation-message--active': props.show,
 }));
 </script>
 

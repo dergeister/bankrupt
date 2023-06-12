@@ -1,54 +1,56 @@
 <template>
-<form
-  class="login-form form"
-  @submit.prevent="handleSubmit"
->
-  <img
-    src="../../../assets/logos/logo.png"
-    alt="logo"
-    class="form__logo"
+<GuestForm>
+  <form
+    class="login-form form"
+    @submit.prevent="handleSubmit"
   >
-  <div class="form__title">
-    {{t('content.loginFormTitle')}}
-  </div>
-  <div class="login-form__email">
-    <InputText
-      :label="t('data.email')"
-      v-model="v$.email.$model"
-    />
-    <ValidationMessage
-      :label="t('error.email')"
-      :show="submitted && v$.email.$invalid"
-    />
-  </div>
-  <div class="login-form__password">
-    <InputText
-      :label="t('data.password')"
-      type="password"
-      v-model="v$.password.$model"
-    />
-    <ValidationMessage
-      :label="t('error.password')"
-      :show="submitted && v$.password.$invalid"
-    />
-  </div>
-  <div class="form__buttons">
-    <Button 
-      type="submit"
-      :label="t('button.login')" 
-      :full-width="true"
-      :disabled="isLoading"
-    />
-    <hr>
-    <Button 
-      :label="t('button.createNewAccount')"
-      :full-width="true"
-      variant="text"
-      :disabled="isLoading"
-      @click="handleRegister"
-    />
-  </div>
-</form>
+    <img
+      src="../../../assets/logos/logo.png"
+      alt="logo"
+      class="form__logo"
+    >
+    <div class="form__title">
+      {{t('content.loginFormTitle')}}
+    </div>
+    <div class="login-form__email">
+      <InputText
+        :label="t('data.email')"
+        v-model="v$.email.$model"
+      />
+      <ValidationMessage
+        :label="t('error.email')"
+        :show="submitted && v$.email.$invalid"
+      />
+    </div>
+    <div class="login-form__password">
+      <InputText
+        :label="t('data.password')"
+        type="password"
+        v-model="v$.password.$model"
+      />
+      <ValidationMessage
+        :label="t('error.password')"
+        :show="submitted && v$.password.$invalid"
+      />
+    </div>
+    <div class="form__buttons">
+      <Button 
+        type="submit"
+        :label="t('button.login')" 
+        :full-width="true"
+        :disabled="isLoading"
+      />
+      <hr>
+      <Button 
+        :label="t('button.createNewAccount')"
+        :full-width="true"
+        variant="text"
+        :disabled="isLoading"
+        @click="handleRegister"
+      />
+    </div>
+  </form>
+</GuestForm>
 </template>
 
 <script setup>
@@ -61,6 +63,7 @@ import { storeToRefs } from 'pinia'
 import InputText from '../../atoms/inputs/InputText.vue';
 import Button from '../../atoms/buttons/Button.vue';
 import ValidationMessage from '../../atoms/text/ValidationMessage.vue';
+import GuestForm from '../../templates/forms/GuestForm.vue';
 
 import useEmitter from '../../../composables/useEmitter';
 import { useAuthenticationStore } from '../../../stores/authentication';
@@ -109,19 +112,8 @@ const handleRegister = () => {
 
 <style lang="scss" scoped>
 .login-form {
-  padding: 3rem 2rem 2rem 2rem;
-  border-radius: 16px;
-  box-shadow: 0 0 10px $gray-400;
-  background-color: $white-100;
-  max-width: 350px;
-  width: 100%;
-
   &__email {
     margin-bottom: 2rem;
-  }
-
-  @media (max-width: $media-breakpoint)  {
-    width: 90%;
   }
 }
 </style>

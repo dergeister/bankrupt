@@ -2,9 +2,9 @@
 <div class="guest-layout">
   <aside class="guest-layout__logo-area">
     <img
-      src="../../assets/logos/logo-white.png"
+      src="../../../assets/logos/logo-white.png"
       alt="logo"
-      class="guest-layout__logo-area__logo"
+      class="guest-layout__logo"
     >
   </aside>
   <main class="guest-layout__content">
@@ -28,10 +28,10 @@
     place-items: center;
     background-color: $blue-400;
     padding: 2rem;
+  }
 
-    &__logo {
-      width: 500px;
-    }
+  &__logo {
+    width: 500px;
   }
 
   &__content {

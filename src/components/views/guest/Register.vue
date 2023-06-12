@@ -8,7 +8,7 @@
 import { onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 
-import GuestLayout from '../../templates/GuestLayout.vue';
+import GuestLayout from '../../templates/layouts/GuestLayout.vue';
 import RegisterForm from '../../organisms/forms/RegisterForm.vue';
 
 import useEmitter from '../../../composables/useEmitter';

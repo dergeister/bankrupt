@@ -25,6 +25,10 @@ export default {
   navigation: {
     balance: 'Saldo',
     creditCard: 'Cartão de Crédito',
-    transactions: 'Transações'
+    investment: 'Investimentos',
+    loan: 'Empréstimos'
+  },
+  userPanel: {
+    hello: 'Olá, {0}'
   }
 }
