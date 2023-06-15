@@ -12,6 +12,7 @@
 import { computed } from 'vue';
 
 import useEmitter from '../../../composables/useEmitter';
+import { navButtonIcons } from '../../../utils/icons';
 
 import 'primeicons/primeicons.css';
 
@@ -25,12 +26,7 @@ const props = defineProps({
   icon: {
     type: String,
     default: 'dollar',
-    validator: (prop) => [
-      'dollar',
-      'credit-card',
-      'chart-line',
-      'money-bill',
-    ].includes(prop)
+    validator: (prop) => navButtonIcons.includes(prop)
   },
   to: {
     type: String,
@@ -106,6 +102,11 @@ const handleNavigation = () => {
 
     &__label {
       display: none;
+    }
+
+    &--active {
+      background-color: $blue-400;
+      color: $white-200;
     }
   }
 }

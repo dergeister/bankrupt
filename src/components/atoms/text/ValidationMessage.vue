@@ -24,7 +24,7 @@ const classes = computed(() => ({
 
 <style lang="scss" scoped>
 .validation-message {
-  color: $red-600;
+  color: $red-400;
   display: none;
   margin-top: 4px;
 

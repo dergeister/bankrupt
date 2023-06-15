@@ -3,6 +3,7 @@
   <UserPanelButton
     v-for="item in buttons"
     :icon="item.icon"
+    :emmit="item.emmit"
   />
 </div>
 </template>
@@ -15,15 +16,19 @@ import UserPanelButton from '../atoms/buttons/UserPanelButton.vue';
 const buttons = ref([
   {
     icon: 'eye',
+    emmit: 'toggle-display-monney'
   },
   {
     icon: 'bell',
+    emmit: 'notifications'
   },
   {
     icon: 'cog',
+    emmit: 'settings'
   },
   {
     icon: 'sign-out',
+    emmit: 'logout'
   },
 ]);
 </script>

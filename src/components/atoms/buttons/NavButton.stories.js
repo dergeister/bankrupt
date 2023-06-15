@@ -1,5 +1,7 @@
 import NavButton from './NavButton.vue';
 
+import { navButtonIcons } from '../../../utils/icons';
+
 export default {
   title: 'Navigation/NavButton',
   component: NavButton,
@@ -9,11 +11,7 @@ export default {
       control: {
         type: 'select',
       },
-      options: [
-        'credit-card',
-        'dollar',
-        'sort-alt',
-      ],
+      options: navButtonIcons,
     },
   },
 }

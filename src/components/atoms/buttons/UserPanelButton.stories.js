@@ -1,5 +1,7 @@
 import UserPanelButton from './UserPanelButton.vue';
 
+import { userPanelIcons } from '../../../utils/icons';
+
 export default {
   title: 'Buttons/UserPanelButton',
   component: UserPanelButton,
@@ -9,13 +11,7 @@ export default {
       control: {
         type: 'select',
       },
-      options: [
-        'bell',
-        'cog',
-        'eye',
-        'eye-slash',
-        'globe',
-      ],
+      options: userPanelIcons,
     },
   },
 }

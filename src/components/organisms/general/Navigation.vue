@@ -37,11 +37,11 @@ import NavButtons from '../../molecules/NavButtons.vue';
     right: 0; 
     margin-left: auto; 
     margin-right: auto;
-    width: 210px;
+    width: 260px;
     background-color: $white-100;
     border-radius: 50px;
     padding: 0.5rem;
-    box-shadow: 0 0 10px $white-300;
+    box-shadow: 0 0 5px $gray-400;
 
     &__logo {
       display: none;

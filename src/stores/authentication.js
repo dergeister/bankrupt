@@ -24,12 +24,12 @@ export const useAuthenticationStore = defineStore("authentication", () => {
         setCurrentAccount(response.data[0].id);
         emitter.emit('login-success');
       } else {
-        setCurrentAccount(null);
+        setCurrentAccount('');
         emitter.emit('login-error');
       }
     })
     .catch((error) => {
-      setCurrentAccount(null);
+      setCurrentAccount('');
       emitter.emit('login-error');
     })
     .finally(() => {
@@ -37,9 +37,8 @@ export const useAuthenticationStore = defineStore("authentication", () => {
     });
   };
 
-  const logout = async () => {
-    await wait();
-    setCurrentAccount(null);
+  const logout = () => {
+    setCurrentAccount('');
   }
 
   const setCurrentAccount = (account) => {

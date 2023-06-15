@@ -1,5 +1,7 @@
 import CircleButton from './CircleButton.vue';
 
+import { circleButtonIcons } from '../../../utils/icons';
+
 export default {
   title: 'Buttons/CircleButton',
   component: CircleButton,
@@ -15,27 +17,7 @@ export default {
       control: {
         type: 'select',
       },
-      options: [
-        'bars',
-        'bell',
-        'calendar',
-        'chevron-left',
-        'cog',
-        'credit-card',
-        'dollar',
-        'eye',
-        'eye-slash',
-        'globe',
-        'question-circle',
-        'qrcode',
-        'search',
-        'shield',
-        'sliders-h',
-        'sort-alt',
-        'times',
-        'user',
-        'user-edit'
-      ],
+      options: circleButtonIcons,
     },
   },
 }

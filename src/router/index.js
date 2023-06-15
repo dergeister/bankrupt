@@ -10,12 +10,12 @@ const router = createRouter({
 router.beforeEach((to, from) => {
   const currentAccount = localStorage.account;
 
-  if(to.meta.requiresAuth && !currentAccount) {
+  if(!currentAccount && to.meta.requiresAuth) {
     return { name: 'login' }
-  } else {
-    if(to.name == 'login' && currentAccount) {
-      return { name: 'balance' }
-    }
+  }
+  
+  if(currentAccount && to.name == 'login') {
+    return { name: 'balance' }
   }
 })
 

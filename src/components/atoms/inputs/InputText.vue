@@ -77,10 +77,10 @@ const classes = computed(() => ({
     
     &--invalid,
     &--invalid:focus {
-      border-color: $red-600;
+      border-color: $red-400;
 
       ~ .input-text__label {
-        color: $red-600 !important;
+        color: $red-400 !important;
       }
     }
 

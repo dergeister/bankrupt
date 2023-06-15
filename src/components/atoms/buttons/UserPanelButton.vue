@@ -2,6 +2,7 @@
 <button
   class="btn-user-panel"
   :disabled="disabled"
+  @click="handleClick"
 >
   <i :class="iconClasses"></i>
 </button>
@@ -10,20 +11,20 @@
 <script setup>
 import { computed } from 'vue';
 
+import { userPanelIcons } from '../../../utils/icons';
+import useEmitter from '../../../composables/useEmitter';
+
 import 'primeicons/primeicons.css';
 
 const props = defineProps({
   icon: {
     type: String,
     default: 'bell',
-    validator: (prop) => [
-      'bell',
-      'cog',
-      'eye',
-      'eye-slash',
-      'globe',
-      'sign-out'
-    ].includes(prop)
+    validator: (prop) => userPanelIcons.includes(prop)
+  },
+  emmit: {
+    type: String,
+    required: true
   },
   disabled: {
     type: Boolean,
@@ -36,6 +37,12 @@ const iconClasses = computed(() => ({
   [`pi-${props.icon}`]: true,
 }));
 
+const emitter = useEmitter();
+
+const handleClick = () => {
+  console.log(props.emmit)
+  emitter.emit(props.emmit);
+}
 </script>
 
 <style lang="scss" scoped>

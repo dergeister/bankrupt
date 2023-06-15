@@ -13,6 +13,8 @@
 <script setup>
 import { computed } from 'vue';
 
+import { circleButtonIcons } from '../../../utils/icons';
+
 import 'primeicons/primeicons.css';
 
 const props = defineProps({
@@ -28,24 +30,7 @@ const props = defineProps({
   icon: {
     type: String,
     default: 'bars',
-    validator: (prop) => [
-      'bars',
-      'bell',
-      'calendar',
-      'chevron-left',
-      'cog',
-      'eye',
-      'eye-slash',
-      'globe',
-      'question-circle',
-      'qrcode',
-      'search',
-      'shield',
-      'sliders-h',
-      'times',
-      'user',
-      'user-edit'
-    ].includes(prop)
+    validator: (prop) => circleButtonIcons.includes(prop)
   },
   disabled: {
     type: Boolean,
