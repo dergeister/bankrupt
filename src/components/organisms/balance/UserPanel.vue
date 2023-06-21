@@ -1,7 +1,7 @@
 <template>
 <div class="user-panel">
   <div class="user-panel__name">
-    {{ props.name }}
+    {{ account.name }}
   </div>
   <UserPanelButtons />
 </div>
@@ -10,28 +10,25 @@
 <script setup>
 import { onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
+import { storeToRefs } from 'pinia';
 
 import UserPanelButtons from '../../molecules/UserPanelButtons.vue';
 
 import useEmitter from '../../../composables/useEmitter';
+import { useAccountStore } from '../../../stores/account';
 import { useAuthenticationStore } from '../../../stores/authentication';
-
-const props = defineProps({
-  name: {
-    type: String,
-    default: 'Hello User'
-  },
-});
 
 const router = useRouter();
 const emitter = useEmitter();
 const authStore = useAuthenticationStore();
+const accountStore = useAccountStore();
+
+const { account } = storeToRefs(accountStore); 
 
 const { logout } = authStore;
 
 onMounted(() => {
   emitter.on('logout', () => {
-    console.log('asd');
     logout();
 
     router.push({

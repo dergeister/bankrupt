@@ -1,3 +1,4 @@
 {
-  "/login/:email/:password": "/account?email=:email&password=:password"
+  "/login/:email/:password": "/account?email=:email&password=:password",
+  "/balance/:account_id": "/balance?account_id=:account_id"
 }

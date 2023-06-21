@@ -10,7 +10,7 @@ export const useAuthenticationStore = defineStore("authentication", () => {
   const isLoading = ref(false);
 
   const currentAccount = computed(() => {
-
+    return localStorage.account;
   })
 
   const login = async (account) => {
@@ -47,6 +47,7 @@ export const useAuthenticationStore = defineStore("authentication", () => {
 
   return {
     isLoading,
+    currentAccount,
     login,
     logout,
   };
