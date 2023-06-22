@@ -29,6 +29,9 @@ export default {
     loan: 'Empréstimos'
   },
   userPanel: {
-    hello: 'Olá, {0}'
+    hello: 'Olá, {name}'
+  },
+  balance: {
+    currentBalance: 'Saldo atual:'
   }
 }

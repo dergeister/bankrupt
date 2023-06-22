@@ -1,9 +1,7 @@
 <template>
 <UserLayout>
   <div class="balance">
-    <span class="balance__amount">
-      Balance: {{ balance }}
-    </span>
+    <BalancePanel :amount="balance" />
   </div>
 </UserLayout>
 </template>
@@ -13,6 +11,7 @@ import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import UserLayout from '../../templates/layouts/UserLayout.vue';
+import BalancePanel from '../../organisms/balance/BalancePanel.vue';
 
 import { useAccountStore } from '../../../stores/account';
 import { useAuthenticationStore } from '../../../stores/authentication';

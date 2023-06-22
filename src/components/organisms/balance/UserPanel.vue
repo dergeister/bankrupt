@@ -1,7 +1,7 @@
 <template>
 <div class="user-panel">
   <div class="user-panel__name">
-    {{ account.name }}
+    {{ t('userPanel.hello', { name: account.name }) }}
   </div>
   <UserPanelButtons />
 </div>
@@ -11,12 +11,15 @@
 import { onMounted, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { storeToRefs } from 'pinia';
+import { useI18n } from 'vue-i18n';
 
 import UserPanelButtons from '../../molecules/UserPanelButtons.vue';
 
 import useEmitter from '../../../composables/useEmitter';
 import { useAccountStore } from '../../../stores/account';
 import { useAuthenticationStore } from '../../../stores/authentication';
+
+const { t } = useI18n();
 
 const router = useRouter();
 const emitter = useEmitter();
